@@ -1,0 +1,25 @@
+{
+    "name": "gloo/module-facebook-sso",
+    "description": "An SSO provider that depends on the Gloo.ng Magento SSO extension",
+    "type": "magento2-module",
+    "license": [
+        "OSL-3.0"
+    ],
+    "authors":[
+        {
+            "name":"David Umoh",
+            "email":"davidumoh@gloo.ng"
+        }
+    ],
+    "require": {
+        "gloo/module-sso":"@dev"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Gloo\\FacebookSSO\\": ""
+        }
+    }
+}
