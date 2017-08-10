@@ -33,7 +33,8 @@ Installation Instructions
         }
  }
 ```
-2. Run `composer require gloo/module-facebook-sso
+2. Run `composer require gloo/module-facebook-sso`
+
 Uninstallation
 --------------
 1. Remove all extension files from your Magento installation
