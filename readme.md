@@ -1,6 +1,7 @@
 Gloo FacebookSSO Extension
 =====================
 An SSO provider that depends on the Base Magento SSO extension
+
 Facts
 -----
 - version: 1.0.0
