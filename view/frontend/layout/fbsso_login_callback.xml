@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+
+    <container name="root">
+        <block	class="Gloo\FacebookSSO\Block\Oauth"
+                  name="redirect_uri" template="Gloo_FacebookSSO::callback.phtml"	/>
+    </container>
+</layout>

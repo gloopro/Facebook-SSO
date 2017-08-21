@@ -26,6 +26,10 @@
                     <label>App Secret </label>
                 </field>
 
+                <field id="redirect_uri" translate="label" type="text" sortOrder="31" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Redirect URI </label>
+                </field>
+
                 <field id="client_token" translate="label" type="text" sortOrder="31" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Client Token</label>
                 </field>

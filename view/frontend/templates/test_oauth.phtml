@@ -1,20 +1,10 @@
-<button class="btn btn-primary fb-btn" id="fb-button">Login With Facebook</button>
+<?php
+/**
+ * $block Gloo\FacebookSSO\Block\Oauth
+ */
+  $auth_url = $block->getAuthenticationURL();
+?>
 
-<script type="text/javascript">
-    require(['jquery'], function($){
-        $(function(){
-            $('#fb-button').click(function(){
-                $.ajax({
-                    url: "https://graph.facebook.com/oauth/authorize",
-                    header: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    dataType: "json",
-                    type: "POST",
-                    crossDomain: true,
-                    data: { client_id: "111963142861596", redirect_uri: "http://magento.gloo/login/callback"}
-                });
-            });
-        });
-    });
-</script>
+<a class="btn btn-primary fb-btn" id="fb-button"
+   href="<?php echo $auth_url; ?>">Login With Facebook</a>
+

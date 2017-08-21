@@ -13,6 +13,7 @@
     ],
     "require": {
         "gloo/module-sso":"@dev"
+
     },
     "autoload": {
         "files": [

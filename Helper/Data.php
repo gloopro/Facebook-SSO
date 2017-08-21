@@ -12,7 +12,7 @@ class Data extends AbstractHelper
     public static $APP_SECRET = "app_secret";
     public static $CLIENT_TOKEN = "client_token";
     public static $SCOPE = "scope";
-    public static $REDIRECT_URL = "redirect_url";
+    public static $REDIRECT_URI = "redirect_uri";
 
      /* @param \Magento\Framework\App\Helper\Context $context
      */
@@ -21,11 +21,10 @@ class Data extends AbstractHelper
         parent::__construct($context);
     }
 
-
     public function getConfig($config_path)
     {
         return $this->scopeConfig->getValue(
-            $config_path,
+            "gloo_fb_config/general/{$config_path}",
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );
     }
