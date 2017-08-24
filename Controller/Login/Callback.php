@@ -2,7 +2,6 @@
 
 namespace Gloo\FacebookSSO\Controller\Login;
 
-
 use Gloo\FacebookSSO\Helper\Data;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use Magento\Framework\App\Action\Action;
@@ -59,7 +58,7 @@ class Callback extends Action
                 'scope' => $this->dataHelper->getConfig("scope"),
             ]);
             $this->setOauthState($provider->getState());
-            $this->_redirect("/fbsso/oauth/index");
+            $this->_redirect($authUrl);
         }
         try {
             $token = $provider->getAccessToken('authorization_code', [

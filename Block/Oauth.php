@@ -21,19 +21,11 @@ class Oauth extends Template
         parent::__construct($context);
     }
 
-    private function getOAuthRedirectUri(){
+    public function getOAuthRedirectUri(){
         return $this->dataHelper->getConfig(Data::$REDIRECT_URI);
     }
 
     private function getOAuthAppID(){
         return $this->dataHelper->getConfig(Data::$APP_ID);
     }
-
-    public function getAuthenticationURL(){
-        $client_id = $this->getOAuthAppID();
-        $redirect_uri = $this->getOAuthRedirectUri();
-        $url = "https://www.facebook.com/v2.10/dialog/oauth?client_id={$client_id}&redirect_uri={$redirect_uri}";
-        return $url;
-    }
-
 }
