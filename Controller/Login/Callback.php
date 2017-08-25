@@ -2,17 +2,20 @@
 
 namespace Gloo\FacebookSSO\Controller\Login;
 
+use Gloo\FacebookSSO\Factory\FacebookFactory;
 use Gloo\FacebookSSO\Helper\Data;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
+use Magento\Customer\Model\Session;
 
 class Callback extends Action
 {
     protected $resultPageFactory;
     protected $dataHelper;
     protected $customerSession;
+    protected $facebookFactory;
 
     const LIMIT = '5';
     const FIELDS = 'id, name, first_name, middle_name, last_name, email, birthday';
@@ -21,12 +24,14 @@ class Callback extends Action
     public function __construct(
         Context $context,
         PageFactory $resultPageFactory,
-        \Magento\Customer\Model\Session $customerSession,
-        Data $dataHelper
+        Session $customerSession,
+        Data $dataHelper,
+        FacebookFactory $facebookFactory
     )
     {
         $this->resultPageFactory = $resultPageFactory;
         $this->dataHelper = $dataHelper;
+        $this->facebookFactory = $facebookFactory;
         $this->customerSession = $customerSession;
         parent::__construct($context);
     }
@@ -45,13 +50,7 @@ class Callback extends Action
 
     public function execute()
     {
-        $provider = new \League\OAuth2\Client\Provider\Facebook([
-            'clientId' =>  $this->dataHelper->getConfig(Data::$APP_ID),
-            'clientSecret' => $this->dataHelper->getConfig(Data::$APP_SECRET),
-            'redirectUri' =>   $this->dataHelper->getConfig(Data::$REDIRECT_URI),
-            'graphApiVersion' => 'v2.10',
-            'scope' => $this->dataHelper->getConfig(DATA::$SCOPE)
-        ]);
+        $provider = $this->initializeProvider();
 
         if(!$this->getRequest()->getParam("code")){
             $authUrl = $provider->getAuthorizationUrl([
@@ -74,5 +73,17 @@ class Callback extends Action
         }
 
         //return $this->resultPageFactory->create();
+    }
+
+    private function initializeProvider(){
+        $options = [
+            'clientId' =>  $this->dataHelper->getConfig(Data::$APP_ID),
+            'clientSecret' => $this->dataHelper->getConfig(Data::$APP_SECRET),
+            'redirectUri' =>   $this->dataHelper->getConfig(Data::$REDIRECT_URI),
+            'graphApiVersion' => 'v2.10',
+            'scope' => $this->dataHelper->getConfig(DATA::$SCOPE)
+        ];
+
+        return $this->facebookFactory->create(["options" => $options]);
     }
 }
