@@ -1,6 +1,5 @@
-<?xml	version="1.0"?>
-<config	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+<?xml version="1.0"?>
+<config	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router	id="standard">
         <route id="sso" frontName="sso">
             <module	name="Gloo_FacebookSSO" after="Gloo_SSO" />
